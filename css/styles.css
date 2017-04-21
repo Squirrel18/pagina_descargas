@@ -1,0 +1,366 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+
+html {
+    min-height: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    color: #FFFFFF;
+    background: #1D2C53;
+    min-width: 260px;
+    overflow-y: auto;
+}
+
+#cont {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+}
+
+#contRight {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 48%;
+    height: 100%;
+    background: url('../assets/img1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.cont-elements {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+#firstTitle {
+    position: relative;
+    left: 0;
+    top: 180px;
+    font-size: 3.2em;
+}
+
+#subTitle {
+    position: relative;
+    top: 180px;
+    font-size: 2.2em;
+}
+
+#textInfo {
+    position: relative;
+    font-size: 1.2em;
+    top: 220px;
+}
+
+#firstTitle, #subTitle, #textInfo {
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+input[type="password"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0);
+}
+
+#inputPass {
+    position: absolute;
+    top: 400px;
+    right: 10px;
+    width: 400px;
+    height: 50px;
+    text-align: right;
+    font-size: 20px;
+    color: #FFFFFF;
+    border-bottom: solid 1px #FFFFFF;
+    border-right: none;
+    border-left: none;
+}
+
+#inputPass:focus {
+    outline: 0px;
+}
+
+#inputPass::-webkit-input-placeholder {
+    opacity: 0.8;
+    font-size: 20px;
+}
+
+#inputPass::-moz-placeholder {
+    opacity: 0.8;
+    font-size: 20px;
+}
+
+input[type="button"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0);
+}
+
+#btnDownload {
+    position: absolute;
+    top: 500px;
+    right: 10px;
+    width: 160px;
+    height: 60px;
+    font-size: 28px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    padding: 10px;
+    cursor: pointer;
+    color: #FFFFFF;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0);
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    background: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2), 0 2px 5px 1px rgba(0,0,0,0.2);
+}
+
+#btnDownload:focus {
+    outline: 0px;
+}
+
+#btnDownload:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 10px 2px rgba(0,0,0,0.1), 0 4px 30px 5px rgba(0,0,0,0.1);
+}
+
+#btnDownload:active {
+    background: rgba(255, 255, 255, 0.6) !important;
+    color: #000000;
+}
+
+.svgCloud {
+    position: absolute;
+    top: 500px;
+    left: 200px;
+    fill: white;
+    width: 400px;
+    height: 400px;
+    z-index: -1;
+}
+
+/*******************************************************************************************************/
+
+
+/*///////////Media queries////////////*/
+
+@media (max-width: 1920px) { 
+    #firstTitle {
+        top: 170px;
+        font-size: 3em;
+    }
+
+    #subTitle {
+        top: 170px;
+        font-size: 2em;
+    }
+
+    #textInfo {
+        top: 210px;
+        font-size: 1.2em;
+    }
+
+    #inputPass {
+        font-size: 22px;
+        height: 50px;
+        top: 370px;
+    }
+
+    #inputPass::-webkit-input-placeholder {
+        font-size: 22px;
+    }
+
+    #inputPass::-moz-placeholder {
+        font-size: 22px;
+    }
+
+    #btnDownload {
+        top: 480px;
+    }
+
+    .svgCloud {
+        top: 460px;
+        left: 10%;
+    }
+}
+
+@media (max-width: 1600px) { 
+    #firstTitle {
+        font-size: 2.5em;
+    }
+
+    #subTitle {
+        font-size: 1.5em;
+    }
+
+    #textInfo {
+        font-size: 1em;
+    }
+
+    #inputPass {
+        font-size: 16px;
+        height: 30px;
+        top: 370px;
+    }
+
+    #inputPass::-webkit-input-placeholder {
+        font-size: 16px;
+    }
+
+    #inputPass::-moz-placeholder {
+        font-size: 16px;
+    }
+
+    #btnDownload {
+        top: 450px;
+    }
+
+    .svgCloud {
+        width: 300px;
+        height: 300px;
+        left: 8%;
+    }
+}
+
+@media (max-width: 1014px) {
+    #inputPass {
+        top: 400px;
+    }
+
+    #btnDownload {
+        top: 480px;
+    }
+
+    .svgCloud {
+        top: 520px;
+    }
+}
+
+@media (max-width: 972px) {
+    #contRight {
+        display: none;
+    }
+
+    .cont-elements {
+        width: 100%;
+    }
+
+    #firstTitle {
+        top: 100px;
+        text-align: center;
+    }
+
+    #subTitle {
+        top: 100px;
+        text-align: center;
+    }
+
+    #textInfo {
+        top: 150px;
+        text-align: center;
+    }
+
+    #inputPass {
+        top: 330px;
+        left: 0;
+        bottom: 0;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #btnDownload  {
+        width: 400px;
+        height: 60px;
+        top: 400px;
+        left: 0;
+        bottom: 0;
+        margin: 0 auto;
+    }
+
+    .svgCloud {
+        width: 250px;
+        height: 250px;
+        top: 500px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 500px) {
+    #firstTitle {
+        top: 130px;
+        font-size: 1.8em;
+    }
+
+    #subTitle {
+        top: 130px;
+        font-size: 1.4em;
+    }
+
+    #textInfo {
+        top: 160px;
+        font-size: 1em;
+    }
+
+    #inputPass {
+        width: 240px;
+    }
+
+    #btnDownload  {
+        width: 240px;
+    }
+}
+
+@media (max-width: 320px) {
+    #firstTitle {
+        top: 100px;
+    }
+
+    #subTitle {
+        top: 110px;
+    }
+
+    #textInfo {
+        top: 150px;
+    }
+
+    #inputPass {
+        top: 350px;
+    }
+
+    #btnDownload  {
+        width: 240px;
+        top: 420px;
+    }
+}
+
+/*///////////Media queries////////////*/
+
+

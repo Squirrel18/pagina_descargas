@@ -176,3 +176,17 @@ function crearTexto(dato) {
         comprueba = false;
     }
 }
+
+function downloadAction() {
+    let inputField = document.querySelector("#inputPass");
+    checkPlatform();
+}
+
+function checkPlatform() {
+    let mobile = new RegExp("iPhone|iPad|Android", "i");
+    let desktop = new RegExp("macintosh|windows", "i")
+    let isMobile = (mobile.test(navigator.userAgent));
+    let isDesktop = (desktop.test(navigator.userAgent));
+    let platform = isMobile ? navigator.userAgent.match(mobile) : navigator.userAgent.match(desktop);
+    console.log(`${platform}`);
+}
