@@ -1,48 +1,40 @@
 <?php
-    require('Data_connection.php');
-	class Connection{
-	  private $Data_connection;	
-	  private $server="";
-	  private $user="";
-	  private $password="";
-	  private $data_base="";
-	  private $conexion;
+	require_once('data.php');
+
+	class connection_handler {
+		private $Data_connection;	
+		private $server = "";
+		private $user = "";
+		private $password = "";
+		private $data_base = "";
+		private $conexion;
 	  
-	  public  function __construct()
-	  {	
-	  	$this->Data_connection=new Dto_connection();
-		$this->server=$this->Data_connection->HOST;
-		$this->user=$this->Data_connection->USER;
-		$this->password=$this->Data_connection->PASSWORD;
-		$this->data_base=$this->Data_connection->DATA_BASE;
-	  }
-	   public  function connection()
-	  {  
-	   $conexion =  mysql_connect($this->server, $this->user, $this->password);
-		if (!$conexion) {
-			die('Could not connect: ' . mysql_error());
+		public function __construct() {	
+			$this->Data_connection = new connection_data();
+			$this->server = $this->Data_connection->host;
+			$this->user = $this->Data_connection->user;
+			$this->password = $this->Data_connection->pass;
+			$this->data_base = $this->Data_connection->data_base;
 		}
-		else{
-		//echo 'Connected successfully';
-		$bd_selection = mysql_select_db($this->data_base, $conexion);
-			if (!$bd_selection) {
-				die ('It cannot be used database : ' . mysql_error());
+
+		public function open_connection() {  
+			$conexion = mysql_connect($this->server, $this->user, $this->password);
+			if (!$conexion) {
+				die('Could not connect: ' . mysql_error());
+			} else {
+				$bd_selection = mysql_select_db($this->data_base, $conexion);
+				if (!$bd_selection) {
+					die('It cannot be used database : ' . mysql_error());
+				}
 			}
+			return $conexion;
 		}
-		
-		
-		return $conexion;
-	  }
 	  
-		 public  function disconnect($con)
-	  {
-		
-		if(mysql_close($con))
-		{
-			//echo "I was disconnected from the database ";
-		}
-		
-	  }	 
+		public function close_connection($con) {
+			if(mysql_close($con)) {
+				//echo "I was disconnected from the database ";
+			}
+		}	 
 	}	
 
 ?>

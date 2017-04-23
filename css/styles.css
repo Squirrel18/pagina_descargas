@@ -36,9 +36,9 @@ body {
     right: 0;
     width: 48%;
     height: 100%;
-    background: url('../assets/img1.png');
+    /*background: url('../assets/img1.png');
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
 }
 
 .cont-elements {
@@ -131,7 +131,7 @@ input[type="button"] {
     padding: 10px;
     cursor: pointer;
     color: #FFFFFF;
-    border-radius: 0;
+    border-radius: 2px;
     background: rgba(255, 255, 255, 0);
     -webkit-transition: all 200ms ease-in-out;
     -moz-transition: all 200ms ease-in-out;
@@ -162,6 +162,15 @@ input[type="button"] {
     width: 400px;
     height: 400px;
     z-index: -1;
+}
+
+.load {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: red;
+    top: 20px;
+    left: 20px;
 }
 
 /*******************************************************************************************************/

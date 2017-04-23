@@ -1,12 +1,10 @@
 <?php 
-	require ('Consult.php');
+	require_once('consult.php');
 	header('Content-Type: application/json');
 	header('Access-Control-Allow-Origin:*');
 	header('Access-Control-Allow-Methods:POST,GET,OPTIONS');
 	
-	
-	
-	function searchDataPage($id_desing){
+	function searchDataPage($id_desing) {
 		$Consult =new Consult($id_desing);
 		return $Consult->searchId();
 	}

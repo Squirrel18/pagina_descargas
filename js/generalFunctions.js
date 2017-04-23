@@ -1,3 +1,5 @@
+'use strict';
+
 var datoJson;
 var plataforma = navigator.platform;
 var a = navigator.userAgent.toLowerCase();
@@ -177,6 +179,10 @@ function crearTexto(dato) {
     }
 }
 
+
+
+
+
 function downloadAction() {
     let inputField = document.querySelector("#inputPass");
     checkPlatform();
@@ -189,4 +195,60 @@ function checkPlatform() {
     let isDesktop = (desktop.test(navigator.userAgent));
     let platform = isMobile ? navigator.userAgent.match(mobile) : navigator.userAgent.match(desktop);
     console.log(`${platform}`);
+    console.log(connection.try);
+    fet();
+}
+
+function fet() {
+
+    if(!('fetch' in window)) {
+        alert('Fetch API not found, try including the polyfill');
+        return;
+    }
+
+    const parameter = document.URL;
+    let data = parameter.substring(parameter.lastIndexOf("?") + 1, parameter.length);
+    data = parseInt(data);
+
+    if(Number.isNaN(data)) {
+        alert("different");
+        return;
+    }
+
+    var myImage = document.querySelector('img');
+
+    var myHeaders = new Headers({
+        "Content-Type": "text/plain; charset=utf-8",
+    });
+
+    var myInit = { method: 'GET',
+               headers: myHeaders,
+               mode: 'cors',
+               cache: 'default' };
+
+    const urlWithParameter = 'php/try.php?id_design=' + data;
+
+    let request = new Request(urlWithParameter, myInit);
+
+    fetch(request).then(function(response) {
+        if (!response.ok) {
+            throw Error(response.status);
+        }
+        return response;
+    }).then(function(response) {
+        if(response.headers.get('Content-Type') === "application/json") {
+            response.json().then(function(json) {
+                Object.getOwnPropertyNames(json[0]).forEach(function(item, index) {
+                    console.log(item + " : " + json[0][item]);
+                });
+            });
+        } else {
+            response.text().then(function(response) {
+                alert("No valid data " + response);
+            });
+        }
+        document.querySelector(".load").style.display = "none";
+    }).catch(function(error) {
+        console.info("problem " + error);
+    });
 }
