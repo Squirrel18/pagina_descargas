@@ -215,8 +215,6 @@ function fet() {
         return;
     }
 
-    var myImage = document.querySelector('img');
-
     var myHeaders = new Headers({
         "Content-Type": "text/plain; charset=utf-8",
     });
@@ -230,9 +228,12 @@ function fet() {
 
     let request = new Request(urlWithParameter, myInit);
 
-    fetch(request).then(function(response) {
-        if (!response.ok) {
+    fetch(request).then(response => {
+        if(!response.ok) {
             throw Error(response.status);
+        }
+        if(response.status >= 400 && response.status < 500) {
+            alert("status code 400" + response.status);
         }
         return response;
     }).then(function(response) {
