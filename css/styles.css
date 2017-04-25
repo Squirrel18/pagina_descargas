@@ -53,13 +53,13 @@ body {
 #firstTitle {
     position: relative;
     left: 0;
-    top: 180px;
+    margin-top: 180px;
     font-size: 3.2em;
 }
 
 #subTitle {
     position: relative;
-    top: 180px;
+    margin-top: 20px;
     font-size: 2.2em;
 }
 
@@ -173,28 +173,7 @@ input[type="button"] {
     top: 0;
     left: 0;
     z-index: 10;
-}
-
-.load_molecula {
-    position: absolute;
-    display: block;
-    top: -120px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 200px;
-}
-
-.load_creative {
-    position: absolute;
-    display: block;
-    top: 220px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 600px;
+    display: none;
 }
 
 .loader {
@@ -229,12 +208,12 @@ input[type="button"] {
 
 @media (max-width: 1920px) { 
     #firstTitle {
-        top: 170px;
+        margin-top: 170px;
         font-size: 3em;
     }
 
     #subTitle {
-        top: 170px;
+        margin-top: 70px;
         font-size: 2em;
     }
 
@@ -329,12 +308,12 @@ input[type="button"] {
     }
 
     #firstTitle {
-        top: 100px;
+        margin-top: 100px;
         text-align: center;
     }
 
     #subTitle {
-        top: 100px;
+        margin-top: 100px;
         text-align: center;
     }
 
@@ -371,21 +350,14 @@ input[type="button"] {
     }
 }
 
-@media (max-width: 650px) {
-    .load_creative {
-        width: 300px;
-       
-    }
-}
-
 @media (max-width: 500px) {
     #firstTitle {
-        top: 130px;
+        margin-top: 130px;
         font-size: 1.8em;
     }
 
     #subTitle {
-        top: 130px;
+        margin-top: 130px;
         font-size: 1.4em;
     }
 
@@ -405,11 +377,11 @@ input[type="button"] {
 
 @media (max-width: 320px) {
     #firstTitle {
-        top: 100px;
+        margin-top: 100px;
     }
 
     #subTitle {
-        top: 110px;
+        margin-top: 110px;
     }
 
     #textInfo {
@@ -423,11 +395,6 @@ input[type="button"] {
     #btnDownload  {
         width: 240px;
         top: 420px;
-    }
-
-    .load_creative {
-        width: 200px;
-       
     }
 }
 

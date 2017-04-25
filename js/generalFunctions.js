@@ -194,17 +194,11 @@ function checkPlatform() {
     let isMobile = (mobile.test(navigator.userAgent));
     let isDesktop = (desktop.test(navigator.userAgent));
     let platform = isMobile ? navigator.userAgent.match(mobile) : navigator.userAgent.match(desktop);
-    console.log(`${platform}`);
+    console.info(`${platform}`);
     //console.log(connection.try);
-    fet();
 }
 
-function fet() {
-
-    if(!('fetch' in window)) {
-        alert('Fetch API not found, try including the polyfill');
-        return;
-    }
+function fetchData() {
 
     const parameter = document.URL;
     let data = parameter.substring(parameter.lastIndexOf("?") + 1, parameter.length);
@@ -255,3 +249,28 @@ function fet() {
         console.info("problem " + error);
     });
 }
+
+(function() {
+
+    /*document.addEventListener("DOMContentLoaded", function(event) {
+        console.log("DOM fully loaded and parsed");
+    });*/
+
+    if(!('body' in document)) {
+        alert("body has not been loaded");
+        return;
+    }
+
+    console.log(document.querySelector('body'));
+
+    if(!('fetch' in window)) {
+        alert('Fetch API not found');
+        return;
+    } else {
+        //fetchData();
+        checkPlatform();
+    }
+
+
+    let body_element = document.querySelector('body');
+})();
