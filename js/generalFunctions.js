@@ -195,7 +195,7 @@ function checkPlatform() {
     let isDesktop = (desktop.test(navigator.userAgent));
     let platform = isMobile ? navigator.userAgent.match(mobile) : navigator.userAgent.match(desktop);
     console.log(`${platform}`);
-    console.log(connection.try);
+    //console.log(connection.try);
     fet();
 }
 
@@ -229,11 +229,13 @@ function fet() {
     let request = new Request(urlWithParameter, myInit);
 
     fetch(request).then(response => {
-        if(!response.ok) {
+        if(response.status >= 400 && response.status < 500) {
+            alert("status code 400 " + response.status);
             throw Error(response.status);
         }
-        if(response.status >= 400 && response.status < 500) {
-            alert("status code 400" + response.status);
+
+        if(!response.ok) {
+            throw Error(response.status);
         }
         return response;
     }).then(function(response) {

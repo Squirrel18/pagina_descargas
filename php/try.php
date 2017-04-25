@@ -6,12 +6,13 @@
 
     if(!$result) {
         header('Content-Type: text/plain');
+        header('X-PHP-Response-Code: 404', true, 404);
         echo "no data";
     } else {
         header('Content-Type: application/json');
         $conten = array();
         $i = 0;
-        while ($row = mysql_fetch_assoc($result)) {
+        while($row = mysql_fetch_assoc($result)) {
             $row = array_map("utf8_encode", $row);
             $conten[$i] = $row;
             $i++;
