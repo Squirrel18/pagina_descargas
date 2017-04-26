@@ -35,9 +35,9 @@ function objeto(dato) {
     compruebaMovil();
 }
 
-$(document).ready(function() {
+/*$(document).ready(function() {
     //parametroUrl();
-});
+});*/
 
 function parametroUrl() {
     var url = document.URL;
@@ -224,7 +224,6 @@ function fetchData() {
 
     fetch(request).then(response => {
         if(response.status >= 400 && response.status < 500) {
-            alert("status code 400 " + response.status);
             throw Error(response.status);
         }
 
@@ -235,19 +234,66 @@ function fetchData() {
     }).then(function(response) {
         if(response.headers.get('Content-Type') === "application/json") {
             response.json().then(function(json) {
-                Object.getOwnPropertyNames(json[0]).forEach(function(item, index) {
-                    console.log(item + " : " + json[0][item]);
-                });
+                fillData(json, true);
             });
         } else {
-            response.text().then(function(response) {
-                alert("No valid data " + response);
+            response.text().then(function(noValidResponse) {
+                alert("No valid data " + noValidResponse);
             });
         }
-        document.querySelector(".load").style.display = "none";
     }).catch(function(error) {
-        console.info("problem " + error);
+        alert("problem " + error);
     });
+}
+
+function fillData(jsonData, useFetch) {
+    if(!useFetch) {
+        alert("Fetch has not been used");
+        return;
+    }
+
+    let title_element = document.querySelector("#title");
+    let subTitle_element = document.querySelector("#subTitle");
+    let body_element = document.querySelector("body");
+    let leftPanel_element = document.querySelector(".cont-elements");
+    let svgCloud_element = document.querySelector(".svgCloud");
+    let input_element = document.querySelector("#inputPass");
+
+    title_element.innerText = jsonData.title;
+    subTitle_element.innerText = jsonData.sub_title;
+    body_element.style.background = jsonData.primary_color;
+    svgCloud_element.style.fill = jsonData.accent_color;
+    input_element.style.color = jsonData.accent_color;
+    input_element.style.borderColor = jsonData.accent_color;
+
+    for(let elements of leftPanel_element.children) {
+        elements.style.color = jsonData.accent_color;
+    }
+
+    Object.getOwnPropertyNames(jsonData).forEach(function(item, index) {
+        if(item === 'img') {
+            let image_background = new Image();
+            image_background.src = jsonData[item];
+            image_background.onload = function() {
+                document.querySelector("#contRight").style.backgroundImage = `url(${image_background.src})`;
+                document.querySelector(".load").style.display = "none";
+                document.querySelector("#cont").style.display = "block";
+            };
+            
+
+            /*fetch(jsonData[item]).then(responseImg => {
+                return responseImg.blob();
+            }).then(responseImg => {
+                let a = URL.createObjectURL(responseImg);
+                document.querySelector("#contRight").style.backgroundImage = `url('${URL.createObjectURL(responseImg)}')`;
+                document.querySelector(".load").style.display = "none";
+                document.querySelector("#cont").style.display = "block";
+            }).catch(errorImg => {
+                console.info("img problem " + errorImg);
+            });*/
+        }
+    });
+
 }
 
 (function() {
@@ -261,16 +307,11 @@ function fetchData() {
         return;
     }
 
-    console.log(document.querySelector('body'));
-
     if(!('fetch' in window)) {
         alert('Fetch API not found');
         return;
     } else {
-        //fetchData();
+        fetchData();
         checkPlatform();
     }
-
-
-    let body_element = document.querySelector('body');
 })();

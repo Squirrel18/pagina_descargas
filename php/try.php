@@ -11,11 +11,9 @@
     } else {
         header('Content-Type: application/json');
         $conten = array();
-        $i = 0;
         while($row = mysql_fetch_assoc($result)) {
             $row = array_map("utf8_encode", $row);
-            $conten[$i] = $row;
-            $i++;
+            $conten = $row;
         }
         $json = json_encode($conten);
         echo $json;
