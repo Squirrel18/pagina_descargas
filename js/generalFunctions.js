@@ -183,19 +183,26 @@ function crearTexto(dato) {
 
 
 
-function downloadAction() {
-    let inputField = document.querySelector("#inputPass");
-    checkPlatform();
-}
-
 function checkPlatform() {
     let mobile = new RegExp("iPhone|iPad|Android", "i");
     let desktop = new RegExp("macintosh|windows", "i")
-    let isMobile = (mobile.test(navigator.userAgent));
-    let isDesktop = (desktop.test(navigator.userAgent));
-    let platform = isMobile ? navigator.userAgent.match(mobile) : navigator.userAgent.match(desktop);
-    console.info(`${platform}`);
-    //console.log(connection.try);
+    let isMobile = mobile.test(navigator.userAgent);
+    let isDesktop = desktop.test(navigator.userAgent);
+    let platform;
+
+    if(isDesktop) {
+        let temp = navigator.userAgent.match(desktop).toString();
+        platform = (temp === 'Windows') ? 'windows' : 'mac';
+        return platform;
+    } else if(isMobile) {
+        let temp = navigator.userAgent.match(mobile).toString();
+        platform = (temp === 'iPhone' || temp === 'iPad') ? 'ios' : 'android';
+        return platform;
+    }
+
+    /*let platform = isMobile ? navigator.userAgent.match(mobile).toString() : navigator.userAgent.match(desktop).toString();
+    platform = platform.toLowerCase();*/
+    return false;
 }
 
 function fetchData() {
@@ -246,9 +253,17 @@ function fetchData() {
     });
 }
 
+let link_download;
+let code_download;
+
 function fillData(jsonData, useFetch) {
     if(!useFetch) {
         alert("Fetch has not been used");
+        return;
+    }
+
+    if(!isAvailable(jsonData)) {
+        alert("No available");
         return;
     }
 
@@ -259,48 +274,68 @@ function fillData(jsonData, useFetch) {
     let svgCloud_element = document.querySelector(".svgCloud");
     let input_element = document.querySelector("#inputPass");
 
-    title_element.innerText = jsonData.title;
-    subTitle_element.innerText = jsonData.sub_title;
-    body_element.style.background = jsonData.primary_color;
-    svgCloud_element.style.fill = jsonData.accent_color;
-    input_element.style.color = jsonData.accent_color;
-    input_element.style.borderColor = jsonData.accent_color;
+    title_element.innerText = jsonData.data_1;
+    subTitle_element.innerText = jsonData.data_2;
+    body_element.style.background = jsonData.data_4;
+    svgCloud_element.style.fill = jsonData.data_5;
+    input_element.style.color = jsonData.data_5;
+    input_element.style.borderColor = jsonData.data_5;
 
     for(let elements of leftPanel_element.children) {
-        elements.style.color = jsonData.accent_color;
+        elements.style.color = jsonData.data_5;
     }
 
-    Object.getOwnPropertyNames(jsonData).forEach(function(item, index) {
-        if(item === 'img') {
-            let image_background = new Image();
-            image_background.src = jsonData[item];
-            image_background.onload = function() {
-                document.querySelector("#contRight").style.backgroundImage = `url(${image_background.src})`;
-                document.querySelector(".load").style.display = "none";
-                document.querySelector("#cont").style.display = "block";
-            };
-            
+    let image_background = new Image();
+    image_background.src = jsonData.data_3;
 
-            /*fetch(jsonData[item]).then(responseImg => {
-                return responseImg.blob();
-            }).then(responseImg => {
-                let a = URL.createObjectURL(responseImg);
-                document.querySelector("#contRight").style.backgroundImage = `url('${URL.createObjectURL(responseImg)}')`;
-                document.querySelector(".load").style.display = "none";
-                document.querySelector("#cont").style.display = "block";
-            }).catch(errorImg => {
-                console.info("img problem " + errorImg);
-            });*/
+    image_background.onload = function() {
+        document.querySelector("#contRight").style.backgroundImage = `url(${image_background.src})`;
+        document.querySelector(".load").style.display = "none";
+        document.querySelector("#cont").style.display = "block";
+    };
+}
+
+function isAvailable(jsonData) {
+    let i = 0;
+    for(let elements in jsonData) {
+        if(i >= 5 && i <= 8) {
+            if(elements === checkPlatform()) {
+                if(jsonData[elements] === '') {
+                    return false;
+                } else {
+                    link_download = jsonData[elements];
+                    code_download = jsonData.data_10;
+                    return true;
+                }
+            }
         }
-    });
+        i++;
+    }
+}
 
+function downloadAction() {
+    console.info(link_download);
+    console.info(code_download);
+
+    let inputField = document.querySelector("#inputPass");
+
+    if(inputField.value === '') {
+        alert("campo vacío");
+        return;
+    } else if(inputField.value === code_download) {
+        alert("MATCH");
+        let temporalLink = document.createElement("a");
+        temporalLink.setAttribute("href", link_download);
+        temporalLink.setAttribute("download", "");
+        temporalLink.click();
+    } else {
+        alert("No match");
+        return
+    }
+    //console.info(checkPlatform());
 }
 
 (function() {
-
-    /*document.addEventListener("DOMContentLoaded", function(event) {
-        console.log("DOM fully loaded and parsed");
-    });*/
 
     if(!('body' in document)) {
         alert("body has not been loaded");
@@ -312,6 +347,5 @@ function fillData(jsonData, useFetch) {
         return;
     } else {
         fetchData();
-        checkPlatform();
     }
 })();

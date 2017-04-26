@@ -123,16 +123,19 @@ input[type="password"] {
 #inputPass::-webkit-input-placeholder {
     opacity: 0.8;
     font-size: 20px;
+    color: #9A7E78;
 }
 
 #inputPass::-moz-placeholder {
     opacity: 0.8;
     font-size: 20px;
+    color: #9A7E78;
 }
 
 #inputPass:-ms-input-placeholder {
     opacity: 0.8;
     font-size: 20px;
+    color: #9A7E78;
 }
 
 input[type="button"] {
@@ -176,7 +179,7 @@ input[type="button"] {
 }
 
 #btnDownload:active {
-    background: rgba(255, 255, 255, 0.8) !important;
+    background: rgba(255, 255, 255, 0.6) !important;
     color: #000000;
 }
 
