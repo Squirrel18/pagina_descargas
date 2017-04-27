@@ -189,6 +189,7 @@ function checkPlatform() {
     let isMobile = mobile.test(navigator.userAgent);
     let isDesktop = desktop.test(navigator.userAgent);
     let platform;
+    console.log(navigator.userAgent);
 
     if(isDesktop) {
         let temp = navigator.userAgent.match(desktop).toString();
@@ -281,7 +282,7 @@ function fillData(jsonData, useFetch) {
     input_element.style.color = jsonData.data_5;
     input_element.style.borderColor = jsonData.data_5;
 
-    for(let elements of leftPanel_element.children) {
+    for(let elements of Array.from(leftPanel_element.children)) {
         elements.style.color = jsonData.data_5;
     }
 
@@ -314,8 +315,6 @@ function isAvailable(jsonData) {
 }
 
 function downloadAction() {
-    console.info(link_download);
-    console.info(code_download);
 
     let inputField = document.querySelector("#inputPass");
 
@@ -332,7 +331,6 @@ function downloadAction() {
         alert("No match");
         return
     }
-    //console.info(checkPlatform());
 }
 
 (function() {
