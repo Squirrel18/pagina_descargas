@@ -6,7 +6,7 @@ function checkPlatform() {
     let isMobile = mobile.test(navigator.userAgent);
     let isDesktop = desktop.test(navigator.userAgent);
     let platform;
-    console.log(navigator.userAgent);
+    console.log(navigator.platform);
 
     if(isDesktop) {
         let temp = navigator.userAgent.match(desktop).toString();
@@ -149,18 +149,3 @@ function downloadAction() {
         return
     }
 }
-
-(function() {
-
-    if(!('body' in document)) {
-        alert("body has not been loaded");
-        return;
-    }
-
-    if(!('fetch' in window)) {
-        alert('Fetch API not found');
-        return;
-    } else {
-        fetchData();
-    }
-})();
