@@ -11,7 +11,7 @@
 
     if(!('fetch' in window)) {
         alert('Fetch API not found');
-        scriptElement.setAttribute("src", "js/dataXml.js");
+        scriptElement.setAttribute("src", "js/dataXML.js");
     } else {
         alert("fetch");
         scriptElement.setAttribute("src", "js/dataFetch.js");
