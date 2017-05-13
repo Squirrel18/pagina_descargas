@@ -1,7 +1,7 @@
 <?php
     require_once('consult.php');
 
-    /*$consult = new consult($_GET["id_design"]);
+    $consult = new consult($_GET["id_design"]);
     $result = $consult->searchId();
 
     if(!$result) {
@@ -17,9 +17,6 @@
         }
         $json = json_encode($conten);
         echo $json;
-    }*/
-
-    $id = $_GET["id_design"];
-    echo $id;
+    }
 
 ?>

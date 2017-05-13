@@ -2,7 +2,7 @@
 
 (function() {
     if(("XMLHttpRequest" in window)) {
-        dataRequest();
+        dataRequest(dataCallback);
     } else {
         alert("fuck you");
         return;
@@ -16,13 +16,19 @@ function dataRead() {
     return data;
 }
 
-function dataRequest() {
+function dataRequest(callBack) {
     var xmlRequest = new XMLHttpRequest;
     xmlRequest.onreadystatechange = function() {
-        if (xmlRequest.readyState == 4 && xmlRequest.status == 200) {
-            alert("request Ok" + xmlRequest.responseText);
+        if (this.readyState == 4 && this.status == 200) {
+            callBack(this);
+        } else {
+            alert("Error xmlhttp" + this.status);
         }
     };
     xmlRequest.open("GET", "php/try.php?id_design=" + dataRead() + "", true);
     xmlRequest.send();
+}
+
+function dataCallback(responseXML) {
+     return JSON.parse(responseXML.responseText);
 }
