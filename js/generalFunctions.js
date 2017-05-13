@@ -23,54 +23,6 @@ function checkPlatform() {
     return false;
 }
 
-function fetchData() {
-
-    const parameter = document.URL;
-    let data = parameter.substring(parameter.lastIndexOf("?") + 1, parameter.length);
-    data = parseInt(data);
-
-    if(Number.isNaN(data)) {
-        alert("different");
-        return;
-    }
-
-    var myHeaders = new Headers({
-        "Content-Type": "text/plain; charset=utf-8",
-    });
-
-    var myInit = { method: 'GET',
-               headers: myHeaders,
-               mode: 'cors',
-               cache: 'default' };
-
-    const urlWithParameter = 'php/try.php?id_design=' + data;
-
-    let request = new Request(urlWithParameter, myInit);
-
-    fetch(request).then(response => {
-        if(response.status >= 400 && response.status < 500) {
-            throw Error(response.status);
-        }
-
-        if(!response.ok) {
-            throw Error(response.status);
-        }
-        return response;
-    }).then(function(response) {
-        if(response.headers.get('Content-Type') === "application/json") {
-            response.json().then(function(json) {
-                fillData(json, true);
-            });
-        } else {
-            response.text().then(function(noValidResponse) {
-                alert("No valid data " + noValidResponse);
-            });
-        }
-    }).catch(function(error) {
-        alert("problem " + error);
-    });
-}
-
 let link_download;
 let code_download;
 
