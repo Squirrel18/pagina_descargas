@@ -32,8 +32,7 @@ function dataRequest() {
     }).then(function(response) {
         if(response.headers.get('Content-Type') === "application/json") {
             response.json().then(function(json) {
-                console.log(json);
-                //fillData(json, true);
+                fillData(json);
             });
         } else {
             response.text().then(function(noValidResponse) {

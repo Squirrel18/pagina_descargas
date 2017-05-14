@@ -1,25 +1,22 @@
 'use strict';
 
-let link_download;
-let code_download;
+var link_download;
+var code_download;
+var textSubTitle;
 
-function fillData(jsonData, useFetch) {
-    if(!useFetch) {
-        alert("Fetch has not been used");
-        return;
-    }
+function fillData(jsonData) {
 
     if(!isAvailable(jsonData)) {
         alert("No available");
         return;
     }
 
-    let title_element = document.querySelector("#title");
-    let subTitle_element = document.querySelector("#subTitle");
-    let body_element = document.querySelector("body");
-    let leftPanel_element = document.querySelector(".cont-elements");
-    let svgCloud_element = document.querySelector(".svgCloud");
-    let input_element = document.querySelector("#inputPass");
+    var title_element = document.querySelector("#title");
+    var subTitle_element = document.querySelector("#subTitle");
+    var body_element = document.querySelector("body");
+    var leftPanel_element = document.querySelector(".cont-elements");
+    var svgCloud_element = document.querySelector(".svgCloud");
+    var input_element = document.querySelector("#inputPass");
 
     title_element.innerText = jsonData.data_1;
     subTitle_element.innerText = jsonData.data_2;
@@ -28,23 +25,22 @@ function fillData(jsonData, useFetch) {
     input_element.style.color = jsonData.data_5;
     input_element.style.borderColor = jsonData.data_5;
 
-    for(let elements of Array.from(leftPanel_element.children)) {
-        elements.style.color = jsonData.data_5;
+    for(var i = 0; i < leftPanel_element.children.length; i++) {
+        leftPanel_element.children[i].style.color = jsonData.data_5;
     }
 
-    let image_background = new Image();
+    var image_background = new Image();
     image_background.src = jsonData.data_3;
-
     image_background.onload = function() {
-        document.querySelector("#contRight").style.backgroundImage = `url(${image_background.src})`;
+        document.querySelector("#contRight").style.backgroundImage = "url(" + jsonData.data_3 + ")";
         document.querySelector(".load").style.display = "none";
         document.querySelector("#cont").style.display = "block";
     };
 }
 
 function isAvailable(jsonData) {
-    let i = 0;
-    for(let elements in jsonData) {
+    var i = 0;
+    for(var elements in jsonData) {
         if(i >= 5 && i <= 8) {
             if(elements === checkPlatform()) {
                 if(jsonData[elements] === '') {
@@ -52,6 +48,8 @@ function isAvailable(jsonData) {
                 } else {
                     link_download = jsonData[elements];
                     code_download = jsonData.data_10;
+                    textSubTitle = jsonData.data_2;
+                    alert("Available");
                     return true;
                 }
             }
@@ -61,20 +59,27 @@ function isAvailable(jsonData) {
 }
 
 function downloadAction() {
-
-    let inputField = document.querySelector("#inputPass");
+    var inputField = document.querySelector("#inputPass");
+    var pattHttp = /http/i;
 
     if(inputField.value === '') {
         alert("campo vacío");
         return;
     } else if(inputField.value === code_download) {
         alert("MATCH");
-        let temporalLink = document.createElement("a");
+        var temporalLink = document.createElement("a");
         temporalLink.setAttribute("href", link_download);
-        temporalLink.setAttribute("download", "");
+        if(pattHttp.test(link_download)) {
+            alert("http");
+            temporalLink.setAttribute("target", "_self");
+        } else {
+            temporalLink.setAttribute("download", textSubTitle + ".zip");
+            alert("download");
+        }
         temporalLink.click();
     } else {
         alert("No match");
         return
     }
 }
+

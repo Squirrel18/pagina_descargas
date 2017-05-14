@@ -18,11 +18,14 @@ function dataRead() {
 
 function dataRequest(callBack) {
     var xmlRequest = new XMLHttpRequest;
+    xmlRequest.addEventListener("error", dataRequestFailed, false);
     xmlRequest.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            callBack(this);
-        } else {
-            alert("Error xmlhttp" + this.status);
+        if(this.readyState == 4) {
+            if(this.status == 200) {
+                callBack(this);
+            } else {
+                alert("No get data " + this.status);
+            }
         }
     };
     xmlRequest.open("GET", "php/try.php?id_design=" + dataRead() + "", true);
@@ -30,5 +33,9 @@ function dataRequest(callBack) {
 }
 
 function dataCallback(responseXML) {
-     return JSON.parse(responseXML.responseText);
+    fillData(JSON.parse(responseXML.responseText));
+}
+
+function dataRequestFailed(event) {
+    alert("XMLHTTP request failed" + event);
 }
