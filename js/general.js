@@ -7,7 +7,7 @@ var textSubTitle;
 function fillData(jsonData) {
 
     if(!isAvailable(jsonData)) {
-        alert("No available");
+        makeMessages("yellow", "La aplicación no esta disponible para está plataforma");
         return;
     }
 
@@ -49,7 +49,6 @@ function isAvailable(jsonData) {
                     link_download = jsonData[elements];
                     code_download = jsonData.data_10;
                     textSubTitle = jsonData.data_2;
-                    alert("Available");
                     return true;
                 }
             }
@@ -63,22 +62,19 @@ function downloadAction() {
     var pattHttp = /http/i;
 
     if(inputField.value === '') {
-        alert("campo vacío");
+        makeMessages("yellow", "El campo de contraseña está vacío");
         return;
     } else if(inputField.value === code_download) {
-        alert("MATCH");
         var temporalLink = document.createElement("a");
         temporalLink.setAttribute("href", link_download);
         if(pattHttp.test(link_download)) {
-            alert("http");
             temporalLink.setAttribute("target", "_self");
         } else {
             temporalLink.setAttribute("download", textSubTitle + ".zip");
-            alert("download");
         }
         temporalLink.click();
     } else {
-        alert("No match");
+        makeMessages("yellow", "La contraseña es incorrecta");
         return
     }
 }

@@ -1,11 +1,12 @@
 'use strict';
 
-function makeMessages() {
+function makeMessages(type, text) {
     if(!(document.querySelector(".messages"))) {
         var messagesElement = document.createElement("div");
         var textMessages = document.createElement("p");
         messagesElement.className = "messages";
-        textMessages.innerText = "Texto alerta completo pero sin estar completo solo para rellenar";
+        messagesElement.classList.add(type);
+        textMessages.innerText = text;
         document.querySelector("body").insertBefore(messagesElement, document.querySelector("body").childNodes[0]);
         messagesElement.appendChild(textMessages);
         callBackDeleteMessages();

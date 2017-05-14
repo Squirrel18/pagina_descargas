@@ -14,10 +14,8 @@
     scriptDataHandler.setAttribute("type", "text/javascript");
 
     if(!('fetch' in window)) {
-        alert('Fetch API not found');
         scriptRequest.setAttribute("src", "js/dataXML.js");
     } else {
-        alert("Fetch API");
         scriptRequest.setAttribute("src", "js/dataFetch.js");
     }
 

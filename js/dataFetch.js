@@ -36,11 +36,10 @@ function dataRequest() {
             });
         } else {
             response.text().then(function(noValidResponse) {
-                alert("No valid data " + noValidResponse);
+                makeMessages("red", "Verificá tú conexión o intenta más tarde");
             });
         }
     }).catch(function(error) {
-        alert("problem " + error);
-        makeMessages();
+        makeMessages("red", "Verificá la dirección url");
     });
 }

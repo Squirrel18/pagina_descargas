@@ -24,8 +24,7 @@ function dataRequest(callBack) {
             if(this.status == 200) {
                 callBack(this);
             } else {
-                alert("No get data " + this.status);
-                makeMessages();
+                makeMessages("red", "Verificá la dirección url");
             }
         }
     };
@@ -38,5 +37,5 @@ function dataCallback(responseXML) {
 }
 
 function dataRequestFailed(event) {
-    alert("XMLHTTP request failed" + event);
+    makeMessages("red", "Verificá tú conexión o intenta más tarde");
 }
