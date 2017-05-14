@@ -41,5 +41,6 @@ function dataRequest() {
         }
     }).catch(function(error) {
         alert("problem " + error);
+        makeMessages();
     });
 }

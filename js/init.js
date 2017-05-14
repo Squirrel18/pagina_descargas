@@ -48,8 +48,5 @@ function checkPlatform() {
         platform = (temp === 'iPhone' || temp === 'iPad') ? 'ios' : 'android';
         return platform;
     }
-
-    /*let platform = isMobile ? navigator.userAgent.match(mobile).toString() : navigator.userAgent.match(desktop).toString();
-    platform = platform.toLowerCase();*/
     return false;
 }

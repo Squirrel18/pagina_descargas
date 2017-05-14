@@ -25,6 +25,7 @@ function dataRequest(callBack) {
                 callBack(this);
             } else {
                 alert("No get data " + this.status);
+                makeMessages();
             }
         }
     };
