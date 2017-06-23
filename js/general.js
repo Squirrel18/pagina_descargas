@@ -60,6 +60,7 @@ function isAvailable(jsonData) {
 function downloadAction() {
     var inputField = document.querySelector("#inputPass");
     var pattHttp = /http/i;
+    var eventClick = new MouseEvent("click");
 
     if(inputField.value === '') {
         makeMessages("yellow", "El campo de contraseña está vacío");
@@ -67,15 +68,21 @@ function downloadAction() {
     } else if(inputField.value === code_download) {
         var temporalLink = document.createElement("a");
         temporalLink.setAttribute("href", link_download);
-        if(pattHttp.test(link_download)) {
-            temporalLink.setAttribute("target", "_self");
+        if(checkPlatform() === "windows" || checkPlatform() === "mac") {
+            temporalLink.setAttribute("download", "");
         } else {
-            temporalLink.setAttribute("download", textSubTitle + ".zip");
+            temporalLink.setAttribute("target", "_self");
         }
-        temporalLink.click();
+        temporalLink.dispatchEvent(eventClick);
     } else {
         makeMessages("yellow", "La contraseña es incorrecta");
         return
+    }
+    var a = navigator.userAgent;
+    a = a.toString();
+    console.log(a.indexOf("Gecko"));
+    if(a.indexOf("Gecko") > -1) {
+        alert("firefox");
     }
 }
 
