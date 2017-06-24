@@ -1,5 +1,3 @@
-'use strict';
-
 var link_download;
 var code_download;
 var textSubTitle;
@@ -59,30 +57,16 @@ function isAvailable(jsonData) {
 
 function downloadAction() {
     var inputField = document.querySelector("#inputPass");
-    var pattHttp = /http/i;
-    var eventClick = new MouseEvent("click");
 
     if(inputField.value === '') {
         makeMessages("yellow", "El campo de contraseña está vacío");
         return;
     } else if(inputField.value === code_download) {
-        var temporalLink = document.createElement("a");
-        temporalLink.setAttribute("href", link_download);
-        if(checkPlatform() === "windows" || checkPlatform() === "mac") {
-            temporalLink.setAttribute("download", "");
-        } else {
-            temporalLink.setAttribute("target", "_self");
-        }
-        temporalLink.dispatchEvent(eventClick);
+        window.location.assign(link_download);
     } else {
         makeMessages("yellow", "La contraseña es incorrecta");
         return
     }
-    var a = navigator.userAgent;
-    a = a.toString();
-    console.log(a.indexOf("Gecko"));
-    if(a.indexOf("Gecko") > -1) {
-        alert("firefox");
-    }
 }
+
 
