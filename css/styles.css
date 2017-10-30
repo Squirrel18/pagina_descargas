@@ -12,15 +12,13 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 300 !important;
     width: 100%;
     min-height: 100%;
     height: 100%;
-    /*background: #1D2C53;*/
     min-width: 200px;
     overflow-y: auto;
-    overflow-x: auto;
 }
 
 .noJavascript {
@@ -37,11 +35,7 @@ body {
     z-index: 10;
 }
 
-#cont {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: right;
+#container {
     display: none;
     opacity: 0;
     -webkit-animation: fadeIn 1s ease-in-out forwards;
@@ -54,24 +48,16 @@ body {
     position: fixed;
     top: 0;
     right: 0;
-    width: 48%;
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat
-}
-
-.cont-elements {
-    position: relative;
     width: 50%;
     height: 100%;
-    top: 0;
-    left: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #title {
     position: relative;
     left: 0;
-    margin-top: 180px;
+    margin-top: 150px;
     margin-bottom: 5px;
     font-size: 3.2em;
 }
@@ -103,12 +89,14 @@ input[type="password"] {
 }
 
 #inputPass {
-    position: absolute;
-    margin-top: 30px;
-    right: 10px;
+    position: relative;
+    display: block;
+    top: 20px;
+    left: 0;
+    margin: 30px auto 0 auto;
     width: 400px;
     height: 50px;
-    text-align: right;
+    text-align: center;
     font-size: 20px;
     border-bottom: solid 1px #FFFFFF;
     border-right: none;
@@ -147,15 +135,16 @@ input[type="button"] {
 }
 
 #btnDownload {
-    position: absolute;
-    margin-top: 140px;
-    margin-bottom: 20px;
-    right: 10px;
+    position: relative;
+    display: block;
+    top: 80px;
+    right: 0;
+    margin: auto auto 150px auto;
     width: 160px;
     height: 60px;
     font-size: 28px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 500 !important;
     padding: 10px;
     cursor: pointer;
     color: #FFFFFF;
@@ -182,18 +171,6 @@ input[type="button"] {
     color: #000000;
 }
 
-.svgCloud {
-    position: relative;
-    top: 0;
-    right: 0;
-    margin-top: 100px;
-    margin-right: 150px;
-    fill: white;
-    width: 600px;
-    height: 600px;
-    z-index: -1;
-}
-
 .load {
     position: fixed;
     width: 100%;
@@ -214,9 +191,9 @@ input[type="button"] {
     bottom: 0;
     margin: auto;
     border-radius: 50%;
-    border: solid 15px #FFFFFF;
-    border-top: solid 15px #14A4D9;
-    border-bottom: solid 15px #14A4D9;
+    border: solid 10px #FFFFFF;
+    border-top: solid 10px #14A4D9;
+    border-bottom: solid 10px #14A4D9;
     animation: loader 2s linear forwards infinite;
 }
 
@@ -234,9 +211,7 @@ input[type="button"] {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 10px;
     box-sizing: border-box;
-    border-radius: 0px 0px 2px 2px;
     z-index: 25;
     text-align: center;
     opacity: 0;
@@ -251,6 +226,7 @@ input[type="button"] {
     top: 0;
     left: 0;
     font-size: 2em;
+    margin: 10px 0;
 }
 
 .yellow {
@@ -270,7 +246,6 @@ input[type="button"] {
 
 @media (max-width: 1920px) { 
     #title {
-        margin-top: 200px;
         font-size: 3em;
     }
 
@@ -297,13 +272,6 @@ input[type="button"] {
 
     #inputPass:-ms-input-placeholder {
         font-size: 22px;
-    }
-
-    .svgCloud {
-        width: 400px;
-        height: 400px;
-        margin-right: 200px;
-        margin-top: 150px;
     }
 }
 
@@ -335,63 +303,11 @@ input[type="button"] {
     #inputPass:-ms-input-placeholder {
         font-size: 16px;
     }
-
-    .svgCloud {
-        margin-left: 40px;
-    }
 }
 
-@media (max-width: 972px) {
+@media (max-width: 991px) {
     #contRight {
         display: none;
-    }
-
-    .cont-elements {
-        width: 100%;
-    }
-
-    #title {
-        margin-top: 140px;
-        text-align: center;
-    }
-
-    #subTitle {
-        text-align: center;
-    }
-
-    #textInfo {
-        text-align: center;
-    }
-
-    #inputPass {
-        position: relative;
-        display: block;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: 30px auto 0 auto;
-        text-align: center;
-    }
-
-    #btnDownload  {
-        position: relative;
-        display: block;
-        width: 400px;
-        height: 60px;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        margin: 40px auto 0 auto;
-    }
-
-    .svgCloud {
-        width: 250px;
-        height: 250px;
-        top: 0;
-        left: 0;
-        display: block;
-        margin: 30px auto 0 auto;
     }
 
     .messages > p {
@@ -412,11 +328,7 @@ input[type="button"] {
         font-size: 1em;
     }
 
-    #inputPass {
-        width: 240px;
-    }
-
-    #btnDownload  {
+    #inputPass, #btnDownload  {
         width: 240px;
     }
 
@@ -438,17 +350,8 @@ input[type="button"] {
         font-size: 1.2em;
     }
 
-    #inputPass {
+    #inputPass, #btnDownload {
         width: 180px;
-    }
-
-    #btnDownload  {
-        width: 180px;
-    }
-
-    .svgCloud {
-        width: 180px;
-        height: 180px;
     }
 
     .loader {

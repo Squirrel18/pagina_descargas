@@ -21,10 +21,6 @@ function dataRequest() {
     let request = new Request(urlWithParameter, initRequest);
 
     fetch(request).then(response => {
-        if(response.status >= 400 && response.status < 500) {
-            throw Error(response.status);
-        }
-
         if(!response.ok) {
             throw Error(response.status);
         }

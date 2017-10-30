@@ -12,7 +12,8 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet" type="text/css">
         <link rel="icon" type="image/png" href="assets/favicon.png">
-        <title>Creative Med IAA distribution</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <title>Creative Med distribution</title>
     </head>
     <body>
         <section class="load">
@@ -21,20 +22,22 @@
                 <use xlink:href="assets/creative.svg#Letras"></use>
             </svg>
         </section>
-        <main id="cont">
-            <section class="cont-elements">
-                <p id="title"></p>
-                <p id="subTitle"></p>
-                <p id="textInfo">Ingrese la clave proporcionada para descargar el Atlas en su dispositivo.</p>
-                <input id="inputPass" type="password" placeholder="Clave" required maxlength="30">
-                <input id="btnDownload" type="button" value="Descargar" onclick="javascript:downloadAction()">
-                <svg class="svgCloud" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
-                </svg>
-            </section>
-            <section id="contRight"></section>
-        </main>
+        <div class="container-fluid">
+            <div class="row">
+                <div id="container" class="col-sm-12 col-lg-6 text-center">
+                    <section class="cont-elements">
+                        <p id="title"></p>
+                        <p id="subTitle"></p>
+                        <p id="textInfo">Ingrese la clave proporcionada para descargar el Atlas en su dispositivo.</p>
+                        <input id="inputPass" type="password" placeholder="Clave" required maxlength="30">
+                        <input id="btnDownload" type="button" value="Descargar" onclick="javascript:downloadAction()">
+                    </section>
+                </div>
+                <div class="col-lg-6">
+                    <section id="contRight"></section>
+                </div>
+            </div>
+        </div>
     </body>  
     <noscript>
         <h1 class="noJavascript">Your browser does not support JavaScript!</h1>

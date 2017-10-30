@@ -5,10 +5,10 @@ function makeMessages(type, text) {
         var messagesElement = document.createElement("div");
         var textMessages = document.createElement("p");
         messagesElement.className = "messages";
-        messagesElement.classList.add(type);
-        textMessages.innerText = text;
         document.querySelector("body").insertBefore(messagesElement, document.querySelector("body").childNodes[0]);
         messagesElement.appendChild(textMessages);
+        messagesElement.classList.add(type);
+        textMessages.innerText = text;
         callBackDeleteMessages();
     }
 }
@@ -19,10 +19,10 @@ function callBackDeleteMessages() {
     setTimeout(function() {
         e.style.WebkitAnimation = 'messagesClose 750ms ease-in-out forwards';
         e.style.animation = 'messagesClose 750ms ease-in-out forwards';
-    }, 2500);
+    }, 5500);
     setTimeout(function() {
         bodyElement.removeChild(e);
-    }, 3250);
+    }, 6250);
 }
 
 

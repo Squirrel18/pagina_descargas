@@ -19,7 +19,7 @@ function fillData(jsonData) {
     title_element.innerText = jsonData.data_1;
     subTitle_element.innerText = jsonData.data_2;
     body_element.style.background = jsonData.data_4;
-    svgCloud_element.style.fill = jsonData.data_5;
+    // svgCloud_element.style.fill = jsonData.data_5;
     input_element.style.color = jsonData.data_5;
     input_element.style.borderColor = jsonData.data_5;
 
@@ -32,7 +32,7 @@ function fillData(jsonData) {
     image_background.onload = function() {
         document.querySelector("#contRight").style.backgroundImage = "url(" + jsonData.data_3 + ")";
         document.querySelector(".load").style.display = "none";
-        document.querySelector("#cont").style.display = "block";
+        document.querySelector("#container").style.display = "block";
     };
 }
 
