@@ -4,7 +4,7 @@
     if(("XMLHttpRequest" in window)) {
         dataRequest(dataCallback);
     } else {
-        alert("fuck you");
+        alert("There is not support for XMLHttpRequest");
         return;
     }
 })();

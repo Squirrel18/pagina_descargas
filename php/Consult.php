@@ -1,5 +1,5 @@
 <?php
-	require_once('connection.php');
+	require_once('Connection.php');
 
 	class consult {
 		private $sql = "";
@@ -31,6 +31,29 @@
 			} else {
 				return false;
 			}
+			$conect->close_connection($mysql);
+		}
+
+		public function downloaded() {
+			$conect = new connection_handler();
+			$mysql = $conect->open_connection();
+			$this->sql = "SELECT download_times FROM gen_distribution WHERE state = 1 AND id_design = '". $this->id_design ."'";
+			$resultado = mysql_query($this->sql);
+			if(mysql_num_rows($resultado) > 0) {
+				return $resultado;
+			} else {
+				return false;
+			}
+			$conect->close_connection($mysql);
+		}
+
+		public function addDownloaded($data) {
+			$conect = new connection_handler();
+			$mysql = $conect->open_connection();
+			$this->sql = "UPDATE gen_distribution SET download_times = " . $data . " ";
+			$this->sql .= "WHERE id_design = '". $this->id_design ."'";
+			$resultado = mysql_query($this->sql);
+			return "sql" . $this->sql;
 			$conect->close_connection($mysql);
 		}
 	}

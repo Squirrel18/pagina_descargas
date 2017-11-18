@@ -62,11 +62,30 @@ function downloadAction() {
         makeMessages("yellow", "El campo de contraseña está vacío");
         return;
     } else if(inputField.value === code_download) {
+        var xmlRequest = new XMLHttpRequest;
+        //xmlRequest.addEventListener("error", makeMessages("red", "Verificá la conexión"), false);
+        xmlRequest.onreadystatechange = function() {
+            if(this.readyState == 4) {
+                if(this.status == 404) {
+                    makeMessages("red", "Verificá la dirección url");
+                }
+            }
+        };
+        xmlRequest.open("POST", "php/try.php", true);
+        xmlRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlRequest.send("downloaded=true&id=" + dataRead() + "");
         window.location.assign(link_download);
     } else {
         makeMessages("yellow", "La contraseña es incorrecta");
         return
     }
 }
+
+/* function dataRead() {
+    var parameter = document.URL;
+    var data = parameter.substring(parameter.lastIndexOf("?") + 1, parameter.length);
+    data = parseInt(data);
+    return data;
+} */
 
 

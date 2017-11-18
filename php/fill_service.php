@@ -9,19 +9,14 @@
 		return $Consult->searchId();
 	}
 
-	$id=$_GET['id_desing'];
+	$id = $_GET['id_desing'];
 	
 	if(!empty($id)){
-	
-			$resultados=searchDataPage($id);
-		}
-
-	else{
+		$resultados = searchDataPage($id);
+	} else {
 		header('HTTP/1.1 405 Method Not Allowed');
 		exit;	
 	}
 	
 	echo json_encode(array_map("utf8_encode",$resultados));
-	
-
 ?>
