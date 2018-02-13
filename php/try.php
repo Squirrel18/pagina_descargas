@@ -33,7 +33,9 @@
             }
             $data = $data + 1;
             $result = $consultDownloaded->addDownloaded($data);
-            echo $result;
+            header('Content-Type: text/plain');
+            header('X-PHP-Response-Code: 200', true, 200);
+            //echo $result;
         } 
         
     }
