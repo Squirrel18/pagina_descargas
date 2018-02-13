@@ -15,11 +15,16 @@ function fillData(jsonData) {
     var leftPanel_element = document.querySelector(".cont-elements");
     var svgCloud_element = document.querySelector(".svgCloud");
     var input_element = document.querySelector("#inputPass");
+    var text_info = document.querySelector("#textInfo");
 
     title_element.innerText = jsonData.data_1;
     subTitle_element.innerText = jsonData.data_2;
     body_element.style.background = jsonData.data_4;
     // svgCloud_element.style.fill = jsonData.data_5;
+    if(jsonData.data_10 === "") {
+        input_element.style.display = "none";
+        text_info.style.display = "none";
+    }
     input_element.style.color = jsonData.data_5;
     input_element.style.borderColor = jsonData.data_5;
 
