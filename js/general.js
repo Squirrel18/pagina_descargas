@@ -1,4 +1,5 @@
 var link_download;
+var link_online;
 var code_download;
 var textSubTitle;
 
@@ -50,6 +51,11 @@ function isAvailable(jsonData) {
                     return false;
                 } else {
                     link_download = jsonData[elements];
+                    if (jsonData.data_11 === '' || jsonData.data_11 === 'NULL') {
+                        link_online = jsonData[elements];
+                    } else {
+                        link_online = jsonData.data_11;
+                    }
                     code_download = jsonData.data_10;
                     textSubTitle = jsonData.data_2;
                     return true;
@@ -83,7 +89,7 @@ function downloadAction() {
             window.location.assign(link_download);
         } else {
             makeMessages("yellow", "La contraseña es incorrecta");
-            return
+            return;
         }
     } else {
         var xmlRequest = new XMLHttpRequest;
@@ -102,11 +108,44 @@ function downloadAction() {
     }
 }
 
-/* function dataRead() {
-    var parameter = document.URL;
-    var data = parameter.substring(parameter.lastIndexOf("?") + 1, parameter.length);
-    data = parseInt(data);
-    return data;
-} */
+function viewOnlineAction() {
+    var inputField = document.querySelector("#inputPass");
 
-
+    if(code_download !== '') {
+        if(inputField.value === '') {
+            makeMessages("yellow", "El campo de contraseña está vacío");
+            return;
+        } else if(inputField.value === code_download) {
+            var xmlRequest = new XMLHttpRequest;
+            //xmlRequest.addEventListener("error", makeMessages("red", "Verificá la conexión"), false);
+            xmlRequest.onreadystatechange = function() {
+                if(this.readyState == 4) {
+                    if(this.status == 404) {
+                        makeMessages("red", "Verificá la dirección url");
+                    }
+                }
+            };
+            xmlRequest.open("POST", "php/try.php", true);
+            xmlRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlRequest.send("onlineview=true&id=" + dataRead() + "");
+            window.open(link_online);
+        } else {
+            makeMessages("yellow", "La contraseña es incorrecta");
+            return;
+        }
+    } else {
+        var xmlRequest = new XMLHttpRequest;
+        //xmlRequest.addEventListener("error", makeMessages("red", "Verificá la conexión"), false);
+        xmlRequest.onreadystatechange = function() {
+            if(this.readyState == 4) {
+                if(this.status == 404) {
+                    makeMessages("red", "Verificá la dirección url");
+                }
+            }
+        };
+        xmlRequest.open("POST", "php/try.php", true);
+        xmlRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlRequest.send("onlineview=true&id=" + dataRead() + "");
+        window.open(link_online);
+    }
+}

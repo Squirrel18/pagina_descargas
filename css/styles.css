@@ -47,10 +47,9 @@ body {
 #contRight {
     position: fixed;
     top: 0;
-    right: 0;
-    width: 50%;
+    width: inherit;
     height: 100%;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 
@@ -80,6 +79,7 @@ body {
 }
 
 input[type="password"] {
+    appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
     margin: 0;
@@ -126,6 +126,7 @@ input[type="password"] {
 }
 
 input[type="button"] {
+    appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
     margin: 0;
@@ -136,10 +137,9 @@ input[type="button"] {
 
 #btnDownload {
     position: relative;
-    display: block;
     top: 80px;
     right: 0;
-    margin: auto auto 150px auto;
+    margin: 20px;
     width: 160px;
     height: 60px;
     font-size: 28px;
@@ -239,6 +239,15 @@ input[type="button"] {
     color: #FFFFFF;
 }
 
+.closeMessage {
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    width: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
 /*******************************************************************************************************/
 
 
@@ -313,6 +322,10 @@ input[type="button"] {
     .messages > p {
         font-size: 1.3em;
     }
+
+    .closeMessage {
+        top: 15px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -338,6 +351,12 @@ input[type="button"] {
 
     .messages > p {
         font-size: 1em;
+    }
+
+    .closeMessage {
+        top: 12px;
+        right: 10px;
+        width: 15px;
     }
 }
 

@@ -14,7 +14,7 @@
     scriptDataHandler.setAttribute("type", "text/javascript");
 
     if(!('fetch' in window)) {
-        scriptRequest.setAttribute("src", "js/dataXML.js");
+        scriptRequest.setAttribute("src", "js/dataXml.js");
     } else {
         scriptRequest.setAttribute("src", "js/dataFetch.js");
     }

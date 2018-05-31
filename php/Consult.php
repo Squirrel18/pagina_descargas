@@ -24,7 +24,8 @@
 						primary_color AS data_4,
 						accent_color AS data_5,
 						windows, mac, android, ios,
-						pass_code AS data_10 FROM gen_distribution WHERE state = 1 and id_design = '".$this->id_design."'";
+						pass_code AS data_10,
+						online_link AS data_11 FROM gen_distribution WHERE state = 1 and id_design = '".$this->id_design."'";
 			$resultado = mysql_query($this->sql);
 			if(mysql_num_rows($resultado) > 0) {
 				return $resultado;
@@ -51,6 +52,29 @@
 			$conect = new connection_handler();
 			$mysql = $conect->open_connection();
 			$this->sql = "UPDATE gen_distribution SET download_times = " . $data . " ";
+			$this->sql .= "WHERE id_design = '". $this->id_design ."'";
+			$resultado = mysql_query($this->sql);
+			return "sql" . $this->sql;
+			$conect->close_connection($mysql);
+		}
+
+		public function onlineViews() {
+			$conect = new connection_handler();
+			$mysql = $conect->open_connection();
+			$this->sql = "SELECT online_views FROM gen_distribution WHERE state = 1 AND id_design = '". $this->id_design ."'";
+			$resultado = mysql_query($this->sql);
+			if(mysql_num_rows($resultado) > 0) {
+				return $resultado;
+			} else {
+				return false;
+			}
+			$conect->close_connection($mysql);
+		}
+
+		public function addOnlineView($data) {
+			$conect = new connection_handler();
+			$mysql = $conect->open_connection();
+			$this->sql = "UPDATE gen_distribution SET online_views = " . $data . " ";
 			$this->sql .= "WHERE id_design = '". $this->id_design ."'";
 			$resultado = mysql_query($this->sql);
 			return "sql" . $this->sql;
